@@ -1,0 +1,28 @@
+<h1>Phone List</h1>
+
+
+<div class="row">
+	<div class="col-md-2">
+		search: <input ng-model="query">
+		sort by:<select ng-model="orderProp">
+					<option value="name">By name alphabetical</option>
+					<option value="age">By newest</option>
+				</select>
+	</div>
+	<div class="col-md-10">
+		<ul class="phones">
+			<li dir-paginate="phone in phones | filter:query | orderBy:orderProp | itemsPerPage: pageSize" current-page="currentPage" class="thumbnail">
+				<a href="#/phone/{{phone.id}}" class="thumb"><img src="{{phone.imageUrl}}"></a>
+				<a href="#/phone/{{phone.id}}">{{phone.name}}</a>
+				<a>{{phone.snippet}}</a>
+			</li>
+		</ul>
+	</div>
+	
+</div>
+<div class="other-controller">
+    <div class="text-center">
+        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)">
+    	</dir-pagination-controls>
+    </div>
+</div>
